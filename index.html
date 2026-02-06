@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Govt Exam Tracker (Free)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== LANDING PAGE ===== -->
+<div id="landing" class="landing">
+  <h1>Government Exam Tracker</h1>
+  <p>Track your daily study and weekly exam attempts for one subject at a time.</p>
+  <ul>
+    <li>Daily study logs (hours + proof required)</li>
+    <li>Weekly attempt tracking</li>
+    <li>Achievements and 24-week progress</li>
+  </ul>
+  <button id="getStarted">Get Started</button>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard" class="container" style="display:none;">
+
+  <!-- Left Column -->
+  <div class="tracker">
+
+    <div class="card">
+      <h2>Add Daily Log</h2>
+      <label>Subject</label>
+      <input type="text" id="dailySubject" placeholder="Enter your subject" readonly>
+      <label>Study Hours</label>
+      <input type="number" id="dailyHours" min="1" max="24">
+      <label>Outcome</label>
+      <select id="dailyOutcome">
+        <option>DONE</option>
+        <option>PARTIAL</option>
+        <option>FAILED</option>
+      </select>
+      <label>Proof (mandatory)</label>
+      <input type="text" id="dailyProof" placeholder="Link / Screenshot URL">
+      <button id="addDaily">Add Daily Log</button>
+    </div>
+
+    <div class="card">
+      <h2>Add Weekly Log</h2>
+      <p id="weeklyUnlockMsg">Weekly log unlocks after 4 valid daily logs.</p>
+      <label>Attempt Type</label>
+      <select id="weeklyAttempt">
+        <option>Mock Test</option>
+        <option>Sectional Test</option>
+        <option>PYQ</option>
+      </select>
+      <label>Score / Outcome</label>
+      <input type="text" id="weeklyScore" placeholder="Enter marks/percentage">
+      <label>Proof (mandatory)</label>
+      <input type="text" id="weeklyProof" placeholder="Link / Screenshot URL">
+      <button id="addWeekly" disabled>Add Weekly Log</button>
+    </div>
+
+    <div class="card">
+      <h2>Achievements</h2>
+      <div class="achievements" id="achievements">
+        <!-- 24 week badges -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right Column -->
+  <div class="stats">
+    <div class="card">
+      <h2>Progress</h2>
+      <div class="progress-container">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+      <div class="score" id="score">0%</div>
+      <div class="verdict green" id="verdict">No logs yet</div>
+      <div class="flag" id="flags"></div>
+    </div>
+
+    <div class="card">
+      <h2>Daily Logs</h2>
+      <table id="dailyTable">
+        <thead><tr><th>#</th><th>Date</th><th>Day</th><th>Hours</th><th>Outcome</th><th>Proof</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Weekly Logs</h2>
+      <table id="weeklyTable">
+        <thead><tr><th>#</th><th>Week Start</th><th>Attempt</th><th>Score</th><th>Proof</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
