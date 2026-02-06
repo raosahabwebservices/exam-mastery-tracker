@@ -1,0 +1,311 @@
+/* ===== GLOBAL ===== */
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#eef2f7;
+  padding:10px;
+  color:#111827;
+}
+
+/* ===== LAYOUT ===== */
+.container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:16px;
+}
+
+@media(max-width:768px){
+  .container{grid-template-columns:1fr;}
+}
+
+/* ===== CARD ===== */
+.card{
+  background:#ffffff;
+  padding:16px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+  margin-bottom:16px;
+}
+
+/* ===== HEADINGS ===== */
+h2{
+  margin:0 0 12px;
+  font-size:1.1rem;
+  font-weight:600;
+}
+
+/* ===== FORM ===== */
+label{
+  display:block;
+  font-size:13px;
+  margin-top:10px;
+  font-weight:600;
+}
+
+input,select,button,textarea{
+  width:100%;
+  padding:9px;
+  margin-top:4px;
+  border-radius:6px;
+  border:1px solid #d1d5db;
+  font-size:.9rem;
+}
+
+textarea{resize:none;}
+
+input:focus,select:focus{
+  outline:none;
+  border-color:#2563eb;
+  box-shadow:0 0 0 2px rgba(37,99,235,.15);
+}
+
+/* Disabled button */
+button:disabled{
+  background:#9ca3af;
+  cursor:not-allowed;
+  transform:none;
+}
+
+button{
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  margin-top:12px;
+  font-weight:600;
+  transition:.2s;
+}
+
+button:hover{
+  background:#1e40af;
+  transform:translateY(-1px);
+}
+
+/* ===== SCORE ===== */
+.score{
+  font-size:24px;
+  text-align:center;
+  margin:10px 0;
+  font-weight:700;
+}
+
+/* ===== VERDICT ===== */
+.verdict{
+  padding:10px;
+  border-radius:6px;
+  font-weight:bold;
+  text-align:center;
+  margin-top:6px;
+}
+
+.red{background:#fee2e2;color:#991b1b;}
+.yellow{background:#fef3c7;color:#92400e;}
+.green{background:#dcfce7;color:#065f46;}
+
+/* ===== ALERT ===== */
+.alert{
+  background:#fee2e2;
+  color:#b91c1c;
+  padding:8px;
+  border-radius:6px;
+  font-size:13px;
+  margin-top:8px;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-container{
+  width:100%;
+  height:22px;
+  background:#e5e7eb;
+  border-radius:12px;
+  overflow:hidden;
+  margin:12px 0;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#2563eb,#1e40af);
+  transition:width .6s cubic-bezier(.4,0,.2,1);
+}
+
+/* ===== REAL USAGE WARNING ===== */
+#realUsageWarning{
+  font-size:13px;
+  text-align:center;
+  margin-top:6px;
+  font-weight:600;
+  color:#dc2626;
+}
+
+/* ===== WEEK INDICATOR & STREAK ===== */
+#weekIndicator,
+#streakDisplay{
+  text-align:center;
+  font-size:13px;
+  margin-top:6px;
+  font-weight:600;
+  color:#374151;
+}
+
+/* ===== TABLE ===== */
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.85rem;
+  margin-top:12px;
+}
+
+th{
+  text-align:left;
+  padding:8px;
+  font-size:.8rem;
+  color:#6b7280;
+  border-bottom:2px solid #e5e7eb;
+}
+
+td{
+  padding:8px;
+  border-bottom:1px solid #e5e7eb;
+}
+
+/* ===== MOBILE TABLE FIX ===== */
+@media(max-width:768px){
+
+  table,thead,tbody,tr,th,td{
+    display:block;
+    width:100%;
+  }
+
+  thead{display:none;}
+
+  tr{
+    background:#fff;
+    margin-bottom:10px;
+    padding:10px;
+    border-radius:8px;
+    box-shadow:0 2px 6px rgba(0,0,0,.05);
+  }
+
+  td{
+    border:none;
+    padding:6px 0;
+    display:flex;
+    justify-content:space-between;
+    font-size:.85rem;
+  }
+
+  td::before{
+    content:attr(data-label);
+    font-weight:600;
+    color:#6b7280;
+  }
+}
+
+/* ===== ACHIEVEMENTS ===== */
+.achievements{
+  margin:12px 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.badge{
+  padding:6px 10px;
+  border-radius:20px;
+  background:#e5e7eb;
+  color:#6b7280;
+  font-size:.75rem;
+  font-weight:600;
+}
+
+.badge.active{
+  background:#2563eb;
+  color:#fff;
+}
+
+/* ===== ANALYTICS ===== */
+#layerStats{
+  margin-top:8px;
+  padding-left:16px;
+  font-size:.85rem;
+  color:#374151;
+}
+
+#layerStats li{
+  margin-bottom:4px;
+}
+
+#topBlocker,
+#realUsageCount{
+  font-weight:700;
+  color:#111827;
+}
+/* ===== VERDICT BOX ===== */
+.verdict{
+  margin-top:10px;
+  padding:10px;
+  border-radius:8px;
+  font-weight:600;
+  text-align:center;
+  font-size:.9rem;
+}
+
+/* States */
+.verdict.green{
+  background:#dcfce7;
+  color:#065f46;
+}
+
+.verdict.yellow{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.verdict.red{
+  background:#fee2e2;
+  color:#991b1b;
+}
+/* ===== VALIDATION ERROR STATE ===== */
+.input-error{
+  border-color:#dc2626 !important;
+  background:#fef2f2;
+}
+
+/* ===== LANDING ===== */
+.landing{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px 20px;
+}
+
+.landing h1{
+  font-size:2rem;
+  margin-bottom:14px;
+}
+
+.landing p{
+  font-size:1rem;
+  margin-bottom:14px;
+  color:#374151;
+}
+
+.landing ul{
+  text-align:left;
+  margin:0 auto 20px;
+  max-width:420px;
+  padding-left:18px;
+}
+
+.landing button{
+  padding:12px 24px;
+  border-radius:8px;
+  font-size:1rem;
+}                            
