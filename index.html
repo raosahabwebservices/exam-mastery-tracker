@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Tracker - Advanced</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== LANDING PAGE ===== -->
+<div id="landing" class="landing">
+  <h1> Exam Mastery Tracker</h1>
+  <p>Single Subject • Layer Based Readiness • 24 Week System</p>
+
+  <label>Select Your Subject</label>
+  <input type="text" id="subjectInput" placeholder="Enter Subject Name">
+
+  <button id="getStarted">Start Tracking</button>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard" class="container" style="display:none;">
+
+<!-- ================= LEFT SIDE ================= -->
+<div class="tracker">
+
+<!-- ===== DAILY LOG ===== -->
+<div class="card">
+<h2>Add Daily Log</h2>
+
+<label>Subject</label>
+<input type="text" id="dailySubject" readonly>
+
+<label>Date</label>
+<input type="text" id="currentDate" readonly>
+
+<label>Day</label>
+<input type="text" id="currentDay" readonly>
+
+<label>Study Hours</label>
+<input type="number" id="dailyHours" min="1" max="24">
+
+<label>Outcome</label>
+<select id="dailyOutcome">
+<option value="">Select</option>
+<option>DONE</option>
+<option>PARTIAL</option>
+<option>FAILED</option>
+</select>
+
+<label>Notes (what exactly done)</label>
+<textarea id="dailyNotes" rows="3" placeholder="Ex: Completed Polity Chapter 3 + 50 MCQs analysis"></textarea>               
+
+<label>Proof (mandatory)</label>
+<input type="text" id="dailyProof" placeholder="Link / Screenshot URL">
+
+<button id="addDaily">Add Daily Log</button>
+
+<div id="failureAlert" class="alert" style="display:none;">
+🚨 Repeated failures detected this week.
+</div>
+</div>
+
+<!-- ===== WEEKLY LOG ===== -->
+<div class="card">
+<h2>Add Weekly Log</h2>
+<p id="weeklyUnlockMsg">Unlocks after 4 valid daily logs.</p>
+
+<label>Week No</label>
+<input type="text" id="weekNumber" readonly>
+
+<label>Layer</label>
+<select id="weeklyLayer">
+<option value="">Select</option>
+<option value="KNOWLEDGE">KNOWLEDGE</option>
+<option value="PRACTICE">PRACTICE</option>
+<option value="OUTPUT">OUTPUT</option>
+<option value="REAL_USAGE">REAL_USAGE</option>
+</select>
+
+<label>Effort</label>
+<select id="weeklyEffort">
+<option value="">Select</option>
+<option>LOW</option>
+<option>MEDIUM</option>
+<option>HIGH</option>
+</select>
+
+<label>Blocker</label>
+<select id="weeklyBlocker">
+<option value="">Select</option>
+<option>NO_TIME</option>
+<option>NO_CLARITY</option>
+<option>FEAR</option>
+<option>DISTRACTION</option>
+<option>LACK_OF_RESOURCES</option>
+<option>AVOIDING_REALITY</option>
+</select>
+
+<label>Time Spent (≥ 3 hrs required)</label>
+<input type="number" id="weeklyTime" min="0">
+
+<label>Outcome (clear measurable action)</label>
+<input type="text" id="weeklyOutcome" placeholder="Ex: Completed 200 MCQs with analysis">
+
+<label>Score (Format: 72/100)</label>
+<input type="text" id="weeklyScore" placeholder="Example: 72/100">
+
+<label>Weekly Notes</label>
+<textarea id="weeklyNotes" rows="3" placeholder="Major mistakes, improvements, patterns"></textarea>
+
+<label>Proof (mandatory)</label>
+<input type="text" id="weeklyProof" placeholder="Link / Screenshot URL">
+
+<button id="addWeekly" disabled>Add Weekly Log</button>
+</div>
+
+<!-- ===== 24 WEEK MASTERY LADDER ===== -->
+<div class="card">
+<h2>🏆 24-Week Mastery Ladder</h2>
+<div id="achievements" class="achievements"></div>
+</div>
+
+</div>
+
+<!-- ================= RIGHT SIDE ================= -->
+<div class="stats">
+
+<!-- ===== PROGRESS ===== -->
+<div class="card">
+<h2>Readiness Progress</h2>
+
+<div class="progress-container">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div class="score">
+Readiness Score: <span id="score">0%</span>
+</div>
+
+<div id="verdict" class="verdict"></div>
+</div>
+
+<!-- ===== WEEKLY TREND GRAPH ===== -->
+<div class="card">
+<h2>Weekly Trend</h2>
+<canvas id="trendChart" height="150"></canvas>
+</div>
+
+<!-- ===== ANALYTICS ===== -->
+<div class="card">
+<h2>📊 Analytics</h2>
+
+<div>
+<strong>Most Repeated Blocker:</strong>
+<span id="topBlocker">None</span>
+</div>
+
+<div>
+<strong>Layer Distribution:</strong>
+<ul id="layerStats"></ul>
+</div>
+
+<div>
+<strong>REAL_USAGE Count:</strong>
+<span id="realUsageCount">0</span>
+</div>
+</div>
+
+<!-- ===== DAILY LOG TABLE ===== -->
+<div class="card">
+<h2>Daily Logs</h2>
+<table id="dailyTable">
+<thead>
+<tr>
+<th>#</th>
+<th>Date</th>
+<th>Day</th>
+<th>Hours</th>
+<th>Outcome</th>
+<th>Proof</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+
+<!-- ===== WEEKLY LOG TABLE ===== -->
+<div class="card">
+<h2>Weekly Logs</h2>
+<table id="weeklyTable">
+<thead>
+<tr>
+<th>#</th>
+<th>Week</th>
+<th>Layer</th>
+<th>Effort</th>
+<th>Blocker</th>
+<th>Time</th>
+<th>Score</th>
+<th>Proof</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
