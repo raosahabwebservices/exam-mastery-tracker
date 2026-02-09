@@ -1,0 +1,235 @@
+/* ================= GLOBAL VARIABLES & RESET ================= */
+:root {
+  --primary-color: #4caf50;
+  --primary-dark: #388e3c;
+  --bg-color: #f4f6fb;
+  --text-dark: #333;
+  --card-bg: #ffffff;
+  --border-color: #ddd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-dark);
+  padding: 10px;
+}
+
+h1, h2 { margin: 0 0 15px 0; color: #2c3e50; }
+h2 { font-size: 1.2rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+
+/* ================= LAYOUT ================= */
+.container {
+  display: flex;
+  flex-direction: column; /* Vertical stacking by default */
+  gap: 16px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Agar chaho purana grid completely remove kar sakte ho */
+@media (min-width: 900px) {
+  .container {
+    display: flex;       /* Vertical stack for desktop too */
+    flex-direction: column;
+  }
+}
+
+
+/* ================= CARDS ================= */
+.card {
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 16px;
+}
+
+/* ================= FORM ELEMENTS ================= */
+label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  background: #fff;
+}
+
+textarea { resize: vertical; }
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:disabled { background: #ccc; cursor: not-allowed; }
+
+/* ================= TABLES ================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+  word-break: break-word;
+}
+
+th {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+}
+
+tr:nth-child(even) { background: #f9f9f9; }
+tr:hover { background: #e8f5e9; }
+
+/* ================= PROGRESS BAR ================= */
+.progress-container {
+  width: 100%;
+  background: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 20px;
+  margin: 8px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,var(--primary-color),#8bc34a);
+  transition: 0.5s;
+  border-radius: 20px;
+}
+
+/* ================= BADGES / LADDER ================= */
+.achievements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 15px;
+  background: #eee;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.badge.active { background: var(--primary-color); color: white; }
+
+/* ================= LANDING ================= */
+.landing {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.landing input, .landing button { width: 100%; }
+
+/* ================= STATS ================= */
+.stats .card { margin-bottom: 12px; }
+.stats strong { display: block; margin-top: 8px; }
+
+/* ================= DAILY STATUS COLORS ================= */
+.daily-done { background: #e8f5e9 !important; }
+.daily-partial { background: #fffde7 !important; }
+.daily-failed { background: #ffebee !important; }
+
+/* ================= MOBILE TABLE CARD VIEW ================= */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+
+  thead { display: none; }
+
+  tr {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 8px;
+  }
+
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 40%;
+    text-align: right;
+    font-size: 0.85rem;
+    min-height: 30px;
+  }
+
+  td:last-child { border-bottom: none; }
+
+  td:before {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 35%;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: left;
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
+
+  /* DAILY LOG LABELS */
+  #dailyTable td:nth-of-type(1):before { content: "#"; }
+  #dailyTable td:nth-of-type(2):before { content: "Date"; }
+  #dailyTable td:nth-of-type(3):before { content: "Day"; }
+  #dailyTable td:nth-of-type(4):before { content: "Hours"; }
+  #dailyTable td:nth-of-type(5):before { content: "Outcome"; }
+  #dailyTable td:nth-of-type(6):before { content: "Proof"; }
+  #dailyTable td:nth-of-type(7):before { content: "Notes"; }
+
+  /* WEEKLY LOG LABELS */
+  #weeklyTable td:nth-of-type(1):before { content: "#"; }
+  #weeklyTable td:nth-of-type(2):before { content: "Week"; }
+  #weeklyTable td:nth-of-type(3):before { content: "Layer"; }
+  #weeklyTable td:nth-of-type(4):before { content: "Effort"; }
+  #weeklyTable td:nth-of-type(5):before { content: "Blocker"; }
+  #weeklyTable td:nth-of-type(6):before { content: "Time"; }
+  #weeklyTable td:nth-of-type(7):before { content: "Score"; }
+  #weeklyTable td:nth-of-type(8):before { content: "Proof"; }
+  #weeklyTable td:nth-of-type(9):before { content: "Notes"; }
+
+  /* STACK STATS & LOGS BELOW 24-WEEK LADDER */
+  #dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tracker, .stats {
+    width: 100%;
+  }
+}
